@@ -20,7 +20,7 @@ from typing import TYPE_CHECKING, Any, Optional
 
 import xoscar as xo
 
-from ..constants import XINFERENCE_DEFAULT_LOG_FILE_NAME, XINFERENCE_LOG_DIR
+from xinference.constants import XINFERENCE_DEFAULT_LOG_FILE_NAME, XINFERENCE_LOG_DIR
 
 if TYPE_CHECKING:
     from xoscar.backends.pool import MainActorPoolType
@@ -164,7 +164,7 @@ def health_check(address: str, max_attempts: int, sleep_interval: int = 3) -> bo
         while attempts < max_attempts:
             time.sleep(sleep_interval)
             try:
-                from ..core.supervisor import SupervisorActor
+                from xinference.core.supervisor import SupervisorActor
 
                 supervisor_ref: xo.ActorRefType[SupervisorActor] = await xo.actor_ref(  # type: ignore
                     address=address, uid=SupervisorActor.default_uid()
@@ -185,7 +185,7 @@ def health_check(address: str, max_attempts: int, sleep_interval: int = 3) -> bo
 
     import asyncio
 
-    from ..isolation import Isolation
+    from xinference.isolation import Isolation
 
     isolation = Isolation(asyncio.new_event_loop(), threaded=True)
     isolation.start()

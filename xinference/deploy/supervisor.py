@@ -22,12 +22,12 @@ from typing import Dict, Optional
 import xoscar as xo
 from xoscar.utils import get_next_port
 
-from ..constants import (
+from xinference.constants import (
     XINFERENCE_HEALTH_CHECK_FAILURE_THRESHOLD,
     XINFERENCE_HEALTH_CHECK_INTERVAL,
 )
-from ..core.supervisor import SupervisorActor
-from .utils import health_check
+from xinference.core.supervisor import SupervisorActor
+from utils import health_check
 
 logger = logging.getLogger(__name__)
 
@@ -88,7 +88,7 @@ def main(
         raise RuntimeError("Supervisor is not available after multiple attempts")
 
     try:
-        from ..api import restful_api
+        from xinference.api import restful_api
 
         restful_api.run(
             supervisor_address=supervisor_address,

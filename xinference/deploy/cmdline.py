@@ -22,13 +22,13 @@ from typing import Dict, List, Optional, Sequence, Tuple, Union
 import click
 from xoscar.utils import get_next_port
 
-from .. import __version__
-from ..client import RESTfulClient
-from ..client.restful.restful_client import (
+from xinference import __version__
+from xinference.client import RESTfulClient
+from xinference.client.restful.restful_client import (
     RESTfulChatModelHandle,
     RESTfulGenerateModelHandle,
 )
-from ..constants import (
+from xinference.constants import (
     XINFERENCE_AUTH_DIR,
     XINFERENCE_DEFAULT_DISTRIBUTED_HOST,
     XINFERENCE_DEFAULT_ENDPOINT_PORT,
@@ -37,8 +37,8 @@ from ..constants import (
     XINFERENCE_LOG_BACKUP_COUNT,
     XINFERENCE_LOG_MAX_BYTES,
 )
-from ..isolation import Isolation
-from .utils import (
+from xinference.isolation import Isolation
+from utils import (
     get_config_dict,
     get_log_file,
     get_timestamp_ms,
@@ -97,7 +97,7 @@ def start_local_cluster(
     metrics_exporter_port: Optional[int] = None,
     auth_config_file: Optional[str] = None,
 ):
-    from .local import main
+    from local import main
 
     dict_config = get_config_dict(
         log_level,
@@ -271,7 +271,7 @@ def supervisor(
     supervisor_port: Optional[int],
     auth_config: Optional[str],
 ):
-    from ..deploy.supervisor import main
+    from xinference.deploy.supervisor import main
 
     dict_config = get_config_dict(
         log_level,
@@ -333,7 +333,7 @@ def worker(
     metrics_exporter_host: Optional[str],
     metrics_exporter_port: Optional[int],
 ):
-    from ..deploy.worker import main
+    from xinference.deploy.worker import main
 
     dict_config = get_config_dict(
         log_level,
@@ -1544,8 +1544,8 @@ def cal_model_mem(
 
     import math
 
-    from ..model.llm.llm_family import convert_model_size_to_float
-    from ..model.llm.memory import estimate_llm_gpu_memory
+    from xinference.model.llm.llm_family import convert_model_size_to_float
+    from xinference.model.llm.memory import estimate_llm_gpu_memory
 
     mem_info = estimate_llm_gpu_memory(
         model_size_in_billions=size_in_billions,
@@ -1619,4 +1619,5 @@ def stop_cluster(endpoint: str, api_key: Optional[str], check: bool):
 
 
 if __name__ == "__main__":
-    cli()
+    # cli()
+    local()

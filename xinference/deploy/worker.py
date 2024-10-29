@@ -20,8 +20,8 @@ from typing import Any, Optional
 import xoscar as xo
 from xoscar import MainActorPoolType
 
-from ..core.worker import WorkerActor
-from ..device_utils import gpu_count
+from xinference.core.worker import WorkerActor
+from xinference.device_utils import gpu_count
 
 logger = logging.getLogger(__name__)
 
